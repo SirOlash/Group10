@@ -6,6 +6,7 @@ class MyTestCase(unittest.TestCase):
         user = User(0, '', '', '')
 
     def test_that_student_can_register(self):
+        pass
 
 
 if __name__ == '__main__':
