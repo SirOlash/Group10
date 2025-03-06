@@ -1,27 +1,28 @@
-from models.users import Student, Instructor
+import bcrypt
+
+from courseregistration import CourseRegistration
+from services.coursemanager import CourseManager
+
 
 class User:
-    def __init__(self, name, email, password):
-        self.name = name
+    def __init__(self, first_name, last_name, email, password):
+        self.first_name = first_name
+        self.last_name = last_name
         self.email = email
-        self.password = password
+        self.password = self._hash_password(password)
 
+    def _hash_password(self, password):
+        return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+
+    def verify_password(self, password):
+        return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
 
 class Student(User):
-    def __init__(self, name, email, password):
-        super().__init__(name, email, password)
-        self.enrolled_courses = []
+    def __init__(self, first_name, last_name, email, password):
+        super().__init__(first_name, last_name, email, password)
+        self.registration = CourseRegistration()
 
-class Instructor(User):
-    def __init__(self, name, email, password):
-        super().__init__(name, email, password)
-        self.created_courses = []
-
-class UserCreator:
-    @staticmethod
-    def create(user_type, email, password):
-        if user_type == 'student':
-            return Student(email, password)
-        elif user_type == 'instructor':
-            return Instructor(email, password)
-        raise ValueError("Invalid user type")
+class Facilitator(User):
+    def __init__(self, first_name, last_name, email, password):
+        super().__init__(first_name, last_name, email, password)
+        self.course_manager = CourseManager()

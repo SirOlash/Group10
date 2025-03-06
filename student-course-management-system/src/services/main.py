@@ -1,61 +1,128 @@
-from webbrowser import register
-
-from pythonclasswork.my_note_pad_works.student_score import student
-
-
-class MainMenu:
-    def __init__(self, login, register):
-        self.login = login
-        self.register = register
-
-    def main_menu(self):
-        print("""
-              Welcome to our portal
-              Enter:
-              1. Login
-              2. Register   
-             """)
-
-        login = int(input("Enter your choice"))
-        match login:
-            case 1:
-                self.login()
-                print("""Are you a student or facilitator?
-                        Enter:
-                             1. Student
-                             2. Facilitator 
-                        """)
-                choice = int(input("Enter your choice"))
-                match choice:
-                    case 1:
-                       self.student_login()
-                    case 2:
-                        self.facilitator_login()
-
-
-            case 2:
-                self.register()
-                print("""Are you a facilitator or a student
-                         Enter:
-                         1. Facilitator
-                         2. Student
-                         """)
-                register_choice = int(input("Enter your choice"))
-                match register_choice:
-                    case 1: self.facilitator_register()
-                    case 2: self.student_register()
+from models.users import Facilitator, Student
+from services.studentportalservice import AuthenticationService
+from models.course import Course
 
 
 
-
-    def student_menu(self):
-        print()
-
-    def login(self):
-        user_input = input("Are ")
-        first_name = input("Enter first Name")
-        if user_input == "Yes":
-            self.student_menu()
+def display_main_menu():
+    print("\nStudent Course Management System")
+    print("1. Register")
+    print("2. Login")
+    print("3. Exit")
 
 
+def display_student_menu():
+    print("\nStudent Dashboard")
+    print("1. Enroll in Course")
+    print("2. View My Courses")
+    print("3. Logout")
 
+
+def display_facilitator_menu():
+    print("\nFacilitator Dashboard")
+    print("1. Create New Course")
+    print("2. View My Courses")
+    print("3. Assign Grades")
+    print("4. Logout")
+
+
+def main():
+    auth = AuthenticationService()
+    current_user = None
+
+    while True:
+        if not current_user:
+            display_main_menu()
+            choice = input("Enter choice: ")
+
+            if choice == '1':
+                # Registration
+                user_type = input("Are you a (1) Student or (2) Facilitator? ")
+                first = input("First name: ")
+                last = input("Last name: ")
+                email = input("Email: ")
+                password = input("Password: ")
+
+                try:
+                    user = auth.register(
+                        'student' if user_type == '1' else 'facilitator',
+                        first, last, email, password
+                    )
+                    print("Registration successful!")
+                except Exception as e:
+                    print(f"Error: {e}")
+
+            elif choice == '2':
+                # Login
+                email = input("Email: ")
+                password = input("Password: ")
+                try:
+                    current_user = auth.login(email, password)
+                    print(f"Welcome {current_user.first_name}!")
+                except Exception as e:
+                    print(f"Login failed: {e}")
+
+            elif choice == '3':
+                print("Exiting system...")
+                break
+
+        else:
+            # User is logged in
+            if isinstance(current_user, Student):
+                display_student_menu()
+                choice = input("Enter choice: ")
+
+                if choice == '1':
+                    # Course enrollment
+                    course_name = input("Enter course name: ")
+                    facilitator_email = input("Enter facilitator email: ")
+                    # Implementation needed: Course lookup logic
+                    print("Enrollment functionality to be implemented")
+
+                elif choice == '2':
+                    # View courses
+                    courses = current_user.registration.get_student_courses(current_user)
+                    print("\nYour Courses:")
+                    for course in courses:
+                        print(f"- {course['course_name']} (Grade: {course['grade']})")
+
+                elif choice == '3':
+                    current_user = None
+                    print("Logged out successfully")
+
+            elif isinstance(current_user, Facilitator):
+                display_facilitator_menu()
+                choice = input("Enter choice: ")
+
+                if choice == '1':
+                    # Create course
+                    course_name = input("Enter course name: ")
+                    try:
+                        new_course = Course(course_name, current_user)
+                        current_user.course_manager.create_course(new_course)
+                        print(f"Course '{course_name}' created successfully!")
+                    except Exception as e:
+                        print(f"Error: {e}")
+
+                elif choice == '2':
+                    # View courses
+                    courses = current_user.course_manager.get_courses(current_user)
+                    print("\nYour Courses:")
+                    for course in courses:
+                        print(f"- {course}")
+
+                elif choice == '3':
+                    # Assign grades
+                    student_email = input("Student email: ")
+                    course_name = input("Course name: ")
+                    grade = input("Grade: ")
+                    # Implementation needed: Grade assignment logic
+                    print("Grade assignment functionality to be implemented")
+
+                elif choice == '4':
+                    current_user = None
+                    print("Logged out successfully")
+
+
+if __name__ == "__main__":
+    main()

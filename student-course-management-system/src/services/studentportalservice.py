@@ -1,19 +1,29 @@
-from database.userdatabase import UserFileManager
-from models.users import UserCreator
-
+# ------------ Authentication System (auth.py) ------------
+from registrationmanager import RegistrationManager
+from models.users import Student, Facilitator
 
 class AuthenticationService:
-    user_database = UserFileManager("users.txt")
+    def __init__(self):
+        self.file_manager = RegistrationManager.get_instance()
+        self.users_file = "users.txt"
 
-    def register(self, user_type, email, password):
-        user = UserCreator.create(user_type, email, password)
-        self.user_database.save(user)
-        return user
+    def register(self, user_type, first_name, last_name, email, password):
+        existing = [line.split(',')[2] for line in self.file_manager.read_file(self.users_file)]
+        if email in existing:
+            raise ValueError("Email already registered")
+
+        user_data = f"{user_type},{first_name},{last_name},{email},{password}"
+        self.file_manager.write_file(self.users_file, [user_data])
+
+        return Student(first_name, last_name, email, password) if user_type == 'student' \
+            else Facilitator(first_name, last_name, email, password)
 
     def login(self, email, password):
-        users = [user for user in self.user_database.scan_through_file() if user.email == email]
-        if not users:
-            raise ValueError("User not found")
-        if users[0].password != password:
-            raise ValueError("Invalid password")
-        return users[0]
+        for line in self.file_manager.read_file(self.users_file):
+            parts = line.split(',')
+            if parts[3] == email:
+                user = Student(parts[1], parts[2], email, parts[4]) if parts[0] == 'student' \
+                    else Facilitator(parts[1], parts[2], email, parts[4])
+                if user.verify_password(password):
+                    return user
+        raise ValueError("Invalid credentials")
