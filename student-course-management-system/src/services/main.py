@@ -1,3 +1,7 @@
+import re
+
+import bcrypt
+
 from models.users import Facilitator, Student
 from services.studentportalservice import AuthenticationService
 from models.course import Course
@@ -40,7 +44,7 @@ def main():
                 user_type = input("Are you a (1) Student or (2) Facilitator? ")
                 first = input("First name: ")
                 last = input("Last name: ")
-                email = input("Email: ")
+                email = input("Email: ").lower()
                 password = input("Password: ")
 
                 try:
@@ -73,7 +77,9 @@ def main():
                 choice = input("Enter choice: ")
 
                 if choice == '1':
-                    course_name = input("Enter course name: ")
+                    user_input = valid_name("Enter course name: ")
+
+
 
                     facilitator_email = input("Enter facilitator email: ")
 
@@ -122,6 +128,16 @@ def main():
                 elif choice == '4':
                     current_user = None
                     print("Logged out successfully")
+
+@staticmethod
+def valid_name(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if re.fullmatch(r'^[A-Z][a-z]+', user_input):
+            return user_input
+
+        else:
+            print("Enter a valid input")
 
 
 if __name__ == "__main__":
