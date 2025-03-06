@@ -1,0 +1,5 @@
+facilitator,John,Doe,john@uni.edu,secure123
+facilitator,John,Doe,john@uni.edu,secure123
+student,Alice,Smith,alice@uni.edu,pass123
+facilitator,John,Doe,john@uni.edu,secure123
+student,james,olash,james,1234
