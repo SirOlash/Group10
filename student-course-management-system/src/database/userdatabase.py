@@ -1,4 +1,4 @@
-from models.users import Student, Instructor
+from models.users import Student, Facilitator
 from registrationmanager import RegistrationManager
 
 import bcrypt
@@ -31,6 +31,6 @@ class UserFileManager:
             user_type, email, password_hash = line.split(',')
             if user_type == 'Student':
                 users.append(Student(email, password_hash))
-            elif user_type == 'Instructor':
-                users.append(Instructor(email, password_hash))
+            elif user_type == 'Facilitator':
+                users.append(Facilitator(email, password_hash))
         return users

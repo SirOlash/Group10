@@ -1,4 +1,4 @@
-# ------------ Authentication System (auth.py) ------------
+
 from registrationmanager import RegistrationManager
 from models.users import Student, Facilitator
 
@@ -13,6 +13,7 @@ class AuthenticationService:
             raise ValueError("Email already registered")
 
         user_data = f"{user_type},{first_name},{last_name},{email},{password}"
+
         self.file_manager.write_file(self.users_file, [user_data])
 
         return Student(first_name, last_name, email, password) if user_type == 'student' \
