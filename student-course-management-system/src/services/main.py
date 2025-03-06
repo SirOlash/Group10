@@ -3,7 +3,7 @@ from webbrowser import register
 from pythonclasswork.my_note_pad_works.student_score import student
 
 
-class MainMeun:
+class MainMenu:
     def __init__(self, login, register):
         self.login = login
         self.register = register
