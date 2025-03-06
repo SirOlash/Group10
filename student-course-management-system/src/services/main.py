@@ -36,7 +36,7 @@ def main():
             choice = input("Enter choice: ")
 
             if choice == '1':
-                # Registration
+
                 user_type = input("Are you a (1) Student or (2) Facilitator? ")
                 first = input("First name: ")
                 last = input("Last name: ")
@@ -53,7 +53,7 @@ def main():
                     print(f"Error: {e}")
 
             elif choice == '2':
-                # Login
+
                 email = input("Email: ")
                 password = input("Password: ")
                 try:
@@ -67,20 +67,20 @@ def main():
                 break
 
         else:
-            # User is logged in
+
             if isinstance(current_user, Student):
                 display_student_menu()
                 choice = input("Enter choice: ")
 
                 if choice == '1':
-                    # Course enrollment
                     course_name = input("Enter course name: ")
+
                     facilitator_email = input("Enter facilitator email: ")
-                    # Implementation needed: Course lookup logic
+
                     print("Enrollment functionality to be implemented")
 
                 elif choice == '2':
-                    # View courses
+
                     courses = current_user.registration.get_student_courses(current_user)
                     print("\nYour Courses:")
                     for course in courses:
@@ -95,7 +95,7 @@ def main():
                 choice = input("Enter choice: ")
 
                 if choice == '1':
-                    # Create course
+
                     course_name = input("Enter course name: ")
                     try:
                         new_course = Course(course_name, current_user)
@@ -105,18 +105,18 @@ def main():
                         print(f"Error: {e}")
 
                 elif choice == '2':
-                    # View courses
+
                     courses = current_user.course_manager.get_courses(current_user)
                     print("\nYour Courses:")
                     for course in courses:
                         print(f"- {course}")
 
                 elif choice == '3':
-                    # Assign grades
+
                     student_email = input("Student email: ")
                     course_name = input("Course name: ")
                     grade = input("Grade: ")
-                    # Implementation needed: Grade assignment logic
+
                     print("Grade assignment functionality to be implemented")
 
                 elif choice == '4':
