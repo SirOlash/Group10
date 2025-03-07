@@ -2,9 +2,9 @@ import re
 
 import bcrypt
 
-from src.models.users import Facilitator, Student
-from src.services.student_portal_service import AuthenticationService
-from src.models.course import Course
+from models.users import Facilitator, Student
+from services.student_portal_service import AuthenticationService
+from models.course import Course
 
 
 
