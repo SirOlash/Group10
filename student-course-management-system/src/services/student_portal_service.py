@@ -1,13 +1,15 @@
 
 from registrationmanager import RegistrationManager
-from models.users import Student, Facilitator
+
+from src.models.users import Student
+
 
 student_object = Student
 
 class AuthenticationService:
     def __init__(self):
         self.file_manager = RegistrationManager.get_instance()
-        self.users_file = "users.txt"
+        self.users_file = "../service/users.txt"
 
     def register_user(self, user_type, first_name, last_name, email, password):
         existing = [line.split(',')[2] for line in self.file_manager.read_file(self.users_file)]
