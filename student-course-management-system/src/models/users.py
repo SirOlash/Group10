@@ -6,27 +6,31 @@ import bcrypt
 
 class User:
     def __init__(self, first_name, last_name, email, password):
-        self.first_name = first_name
-        self.last_name = last_name
-        self.email = email
-        self.password = password
+        self.__first_name = first_name
+        self.__last_name = last_name
+        self.__email = email
+        self.__password = password
 
-    # def _hash_password(self, password):
-    #     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+    def get_first_name(self):
+        return self.__first_name
 
-    # def verify_password(self, password):
-    #     return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
+    def get_last_name(self):
+        return self.__last_name
+
+    def get_email(self):
+        return self.__email
+
+    def verify_password(self, password):
+        return self.__email == password
 
     def __str__(self):
-        return f"{self.first_name},{self.last_name},{self.email},{self.password}"
+        return f"{self.__first_name},{self.__last_name},{self.__email},{self.__password}"
 
 class Student(User):
     def __init__(self, first_name, last_name, email, password):
         super().__init__(first_name, last_name, email, password)
-        # self.registration = CourseRegistration()
 
 
 class Facilitator(User):
     def __init__(self, first_name, last_name, email, password):
         super().__init__(first_name, last_name, email, password)
-        # self.course_manager = CourseManager()

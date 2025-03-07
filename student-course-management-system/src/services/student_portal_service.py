@@ -1,5 +1,5 @@
 
-from registrationmanager import RegistrationManager
+from registrationmanage import RegistrationManager
 
 from src.models.users import Student
 
