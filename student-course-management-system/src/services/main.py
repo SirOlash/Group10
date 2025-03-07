@@ -1,5 +1,6 @@
+
 from models.users import Facilitator, Student
-from services.studentportalservice import AuthenticationService
+from services.authenticationservice import AuthenticationService
 from models.course import Course
 
 
@@ -48,6 +49,8 @@ def main():
                         'student' if user_type == '1' else 'facilitator',
                         first, last, email, password
                     )
+
+
                     print("Registration successful!")
                 except Exception as e:
                     print(f"Error: {e}")

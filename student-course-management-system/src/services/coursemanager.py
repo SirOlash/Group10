@@ -1,6 +1,4 @@
-
 from registrationmanager import RegistrationManager
-
 
 
 class CourseManager:

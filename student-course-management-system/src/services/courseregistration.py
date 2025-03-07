@@ -1,9 +1,9 @@
+from database.user_database import UserFileManager
 
-from registrationmanager import RegistrationManager
 
 class CourseRegistration:
     def __init__(self):
-        self.file_manager = RegistrationManager.get_instance()
+        self.user_file_manager = UserFileManager("users.txt")
         self.reg_file = "registrations.txt"
 
     def register(self, student, course):
