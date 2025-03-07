@@ -24,12 +24,13 @@ class MyTestCase(unittest.TestCase):
         result = self.register.register_course(self.student,self.facilitator,self.course)
         self.assertTrue(result)
 
+    def test_that_s
+
     def test_that_each_student_can_view_their_registered_courses(self):
         self.register.register_course(self.student, self.facilitator, self.course)
         result = self.register.view_registrations_by_student(self.student)
         expected = "Course: Python, Facilitator: Bruno Fernandez, Grade: unassigned"
         self.assertEqual(expected,result)
-
 
 
 
