@@ -16,7 +16,7 @@ class CourseManager:
 
     @staticmethod
     def course_exists(facilitator : Facilitator, course: Course):
-        facilitator_name = f"{facilitator.get_first_name} {facilitator.get_last_name}"
+        facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
         with open(COURSES_FILE, "r") as file:
             for line in file:
                 line = line.strip()
@@ -33,7 +33,7 @@ class CourseManager:
             print("This facilitator has already created this course!")
             return False
         else:
-            facilitator_name = f"{facilitator.get_first_name} {facilitator.get_last_name}"
+            facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
             with open(COURSES_FILE, "a") as file:
                 file.write(f"{facilitator_name},{course.course_name}\n")
             print("Course added successfully!")

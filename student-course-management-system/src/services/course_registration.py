@@ -14,12 +14,8 @@ class CourseRegistration:
             open(REGISTRATIONS_FILE, "w").close()
 
 
-
-    def  register_course(self, student, facilitator, course, grade="unassigned"):
-        if self.registration_exists(student, facilitator, course):
-            print("You have already registered for this course!")
-            return False
-
+    @staticmethod
+    def register_course(student, facilitator, course, grade ="unassigned"):
         student_name = f"{student.first_name} {student.last_name}"
         facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
         with open(REGISTRATIONS_FILE, "a") as file:
@@ -75,20 +71,3 @@ class CourseRegistration:
                 print(reg)
         else:
             print("No registrations found for this facilitator.")
-
-    @staticmethod
-    def registration_exists(student, facilitator, course):
-        student_name = f"{student.first_name} {student.last_name}"
-        facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
-        with open(REGISTRATIONS_FILE, "r") as file:
-            for line in file:
-                parts = line.strip().split(",")
-                if len(parts) >= 4:
-                    reg_student, reg_course, reg_facilitator, _ = parts
-                    if (
-                            reg_student == student_name and
-                            reg_course == course.course_name and
-                            reg_facilitator == facilitator_name
-                    ):
-                        return True
-        return False
