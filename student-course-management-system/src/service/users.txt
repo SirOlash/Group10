@@ -1,4 +1,2 @@
-Facilitator,wer,rew,eer@dgf.com,$2b$12$7Xmmb669Qa5eF1mTkwRlAeAwuYyruKXRpaS1T0H6tjaDFJ8qff23.
-Student,qw,wq,wer@ee.com,$2b$12$kEpIEX1yHZpjoNmYPmDKkOxYvWuCYJN9IA/URYb5BD9.Gj3vrktka
-Student,fan,asd,jam@gsg.com,$2b$12$HY5YPGOZIAs21YEuptFXSucihFPMFO8qcc0wYlE23qdnGWNoxatpm
-Student,wer,rew,wre@gan.com,$2b$12$L3NXbIiA6rY1NHUVqlIBEuvLOVREAijzs6wPhtJ.wS81FHLJEuDhi
+
+student,james,olash,james,1234
