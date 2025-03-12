@@ -1,6 +1,6 @@
 import os
 
-from src.services.course_manager import CourseManager
+from services.course_manager import CourseManager
 
 REGISTRATIONS_FILE = "registered_courses.txt"
 
@@ -20,8 +20,8 @@ class CourseRegistration:
             print("You have already registered for this course!")
             return False
 
-        student_name = f"{student.first_name} {student.last_name}"
-        facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
+        student_name = f"{student.get_first_name} {student.get_last_name}"
+        facilitator_name = f"{facilitator.get_first_name} {facilitator.get_last_name}"
         with open(REGISTRATIONS_FILE, "a") as file:
             file.write(f"{student_name},{course.course_name},{facilitator_name},{grade}\n")
         print("Registration successful!")
@@ -29,7 +29,7 @@ class CourseRegistration:
 
     @staticmethod
     def view_registrations_by_student(student):
-        student_name = f"{student.first_name} {student.last_name}"
+        student_name = f"{student.get_first_name} {student.get_last_name}"
         registrations = []
         with open(REGISTRATIONS_FILE, "r") as file:
             for line in file:
@@ -57,7 +57,7 @@ class CourseRegistration:
 
     @staticmethod
     def view_registrations_by_facilitator(facilitator):
-        facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
+        facilitator_name = f"{facilitator.get_first_name} {facilitator.get_last_name}"
         registrations = []
         with open(REGISTRATIONS_FILE, "r") as file:
             for line in file:
@@ -78,8 +78,8 @@ class CourseRegistration:
 
     @staticmethod
     def registration_exists(student, facilitator, course):
-        student_name = f"{student.first_name} {student.last_name}"
-        facilitator_name = f"{facilitator.first_name} {facilitator.last_name}"
+        student_name = f"{student.get_first_name} {student.get_last_name}"
+        facilitator_name = f"{facilitator.get_first_name} {facilitator.get_last_name}"
         with open(REGISTRATIONS_FILE, "r") as file:
             for line in file:
                 parts = line.strip().split(",")

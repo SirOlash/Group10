@@ -1,7 +1,7 @@
 import os
 
-from src.models.course import Course
-from src.models.users import Facilitator
+from models.course import Course
+from models.users import Facilitator
 
 COURSES_FILE = "courses.txt"
 

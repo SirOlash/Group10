@@ -1,9 +1,8 @@
 import re
 
-import bcrypt
 
-from models.users import Facilitator, Student
-from services.student_portal_service import AuthenticationService
+from models.users import Facilitator, Student, User
+from services.authenticationservice  import AuthenticationService
 from models.course import Course
 
 
@@ -45,10 +44,10 @@ def main():
                 first = input("First name: ")
                 last = input("Last name: ")
                 email = input("Email: ").lower()
-                password = input("Password: ")
+                password = input("Pas1sword: ")
 
                 try:
-                    user = auth.register(
+                    current_user = auth.register(
                         'student' if user_type == '1' else 'facilitator',
                         first, last, email, password
                     )
@@ -129,7 +128,7 @@ def main():
                     current_user = None
                     print("Logged out successfully")
 
-@staticmethod
+
 def valid_name(prompt):
     while True:
         user_input = input(prompt).strip()

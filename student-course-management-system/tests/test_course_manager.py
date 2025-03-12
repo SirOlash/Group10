@@ -1,9 +1,9 @@
 import os
 import unittest
 
-from src.models.course import Course
-from src.models.users import Facilitator
-from src.services.course_manager import CourseManager, COURSES_FILE
+from models.course import Course
+from models.users import Facilitator
+from services.course_manager import CourseManager, COURSES_FILE
 
 
 class MyTestCase(unittest.TestCase):
