@@ -1,7 +1,5 @@
-import re
 
-
-from models.users import Facilitator, Student, User
+from models.users import Facilitator, Student
 from services.authenticationservice  import AuthenticationService
 from models.course import Course
 
@@ -75,25 +73,34 @@ def main():
                 display_student_menu()
                 choice = input("Enter choice: ")
 
+
                 if choice == '1':
-                    user_input = valid_name("Enter course name: ")
+                    course_name = input("Enter course name: ").strip()
+                    facilitator_email = input("Enter facilitator email: ").lower()
 
 
+                    try:
 
-                    facilitator_email = input("Enter facilitator email: ")
+                        all_users = auth.get_all_users()
+                        facilitator = next(
+                            (u for u in all_users if isinstance(u, Facilitator) and u.email == facilitator_email),
+                            None
+                        )
 
-                    print("Enrollment functionality to be implemented")
+                        if not facilitator:
+                            print("Error: Facilitator not found!")
+                            continue
 
-                elif choice == '2':
+                        course = Course(course_name, facilitator)
 
-                    courses = current_user.registration.get_student_courses(current_user)
-                    print("\nYour Courses:")
-                    for course in courses:
-                        print(f"- {course['course_name']} (Grade: {course['grade']})")
 
-                elif choice == '3':
-                    current_user = None
-                    print("Logged out successfully")
+                        if current_user.registration.register_course(current_user, facilitator, course):
+                            print(f"Successfully enrolled in {course_name}!")
+                        else:
+                            print("Enrollment failed!")
+
+                    except Exception as e:
+                        print(f"Error: {str(e)}")
 
             elif isinstance(current_user, Facilitator):
                 display_facilitator_menu()
@@ -116,27 +123,47 @@ def main():
                     for course in courses:
                         print(f"- {course}")
 
+
                 elif choice == '3':
 
-                    student_email = input("Student email: ")
-                    course_name = input("Course name: ")
-                    grade = input("Grade: ")
+                    student_email = input("Student email: ").lower()
 
-                    print("Grade assignment functionality to be implemented")
+                    course_name = input("Course name: ").strip()
 
-                elif choice == '4':
-                    current_user = None
-                    print("Logged out successfully")
+                    grade = input("Grade: ").strip().upper()
+
+                    try:
+                        all_users = auth.get_all_users()
+
+                        student = next(
+
+                            (u for u in all_users if isinstance(u, Student) and u.email == student_email),
+
+                            None
+
+                        )
+
+                        if not student:
+                            print("Error: Student not found!")
+
+                            continue
+
+                        course = Course(course_name, current_user)
+
+                        if current_user.course_manager.update_grade(student, course, grade):
+
+                            print(f"Grade {grade} assigned successfully!")
+
+                        else:
+
+                            print("Grade assignment failed!")
 
 
-def valid_name(prompt):
-    while True:
-        user_input = input(prompt).strip()
-        if re.fullmatch(r'^[A-Z][a-z]+', user_input):
-            return user_input
+                    except Exception as e:
 
-        else:
-            print("Enter a valid input")
+                        print(f"Error: {str(e)}")
+
+
 
 
 if __name__ == "__main__":

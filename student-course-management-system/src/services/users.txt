@@ -1,1 +1,4 @@
 Student,rew,wer,wer@gil.com,$2b$12$rVP/7SXJs47mRNzU/6gM5usUpqKb8GVFI0xggoZIVrGvRpevVWhsq
+Student,wer,rew,qew@a.com,$2b$12$jrhN3M1Rn1kCpB6/u/qeJOWR1avqquhVHNX7mjJCtedGiBZHEKPV.
+Student,Wer,Rew,wr@g.com,$2b$12$u.M4cES/1dmj0QrKGaCxK.ZhB6j912eKYA2jh1ACi2XieTYWyPvMO
+Student,Wer,Rew,wer@r.com,$2b$12$XC0.o44yj39HRCAPS8s8LOWNv8RftWAshDLZ94VWn8Li6pXVBun2m

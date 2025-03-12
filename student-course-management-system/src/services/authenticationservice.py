@@ -1,4 +1,4 @@
-import bcrypt
+
 import re
 
 from models.users import Student, Facilitator
@@ -45,10 +45,7 @@ class AuthenticationService:
 
     def login(self, email, password):
         try:
-            email_pattern = r'^[a-zA-Z0-9._%+-]+@+[a-zA-Z]+\.com$'
-            if not re.match(email_pattern, email):
-                raise ValueError("Invalid email format")
-
+            email = email.lower()
             user = next((u for u in self.get_all_users() if u.email == email), None)
             if not user:
                 raise ValueError("User not found")
@@ -56,11 +53,18 @@ class AuthenticationService:
             if not user.verify_password(password):
                 raise ValueError("Invalid password")
 
+
+            if isinstance(user, Student):
+                from services.course_registration import CourseRegistration
+                user.registration = CourseRegistration()
+            elif isinstance(user, Facilitator):
+                from services.course_manager import CourseManager
+                user.course_manager = CourseManager()
+
             return user
 
         except Exception as e:
             raise ValueError(f"Login failed: {str(e)}")
-
     def user_exists(self, email):
         existing_emails = [u.email for u in self.get_all_users()]
         return email in existing_emails
@@ -83,15 +87,11 @@ class AuthenticationService:
         return users
 
     def save_user(self, user):
-        password = user.password.encode('utf-8')
-        hashed_password = bcrypt.hashpw(password, bcrypt.gensalt())
-        hashed_str = hashed_password.decode('utf-8')
-
-        data = f"{type(user).__name__},{user.first_name},{user.last_name},{user.email},{hashed_str}\n"
+        data = f"{type(user).__name__},{user.first_name},{user.last_name},{user.email},{user.password}\n"
 
         try:
             with open(self.filepath, "a") as file:
                 file.write(data)
-        except:
+        except IOError:
             with open(self.filepath, "w") as file:
                 file.write(data)
