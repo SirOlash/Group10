@@ -1,5 +1,6 @@
 import os
 
+from models.users import Student
 from src.services.course_manager import CourseManager
 
 REGISTRATIONS_FILE = "registered_courses.txt"
@@ -15,7 +16,7 @@ class CourseRegistration:
 
 
 
-    def  register_course(self, student, facilitator, course, grade="unassigned"):
+    def  register_course(self, student:Student, facilitator, course, grade="unassigned"):
         if self.registration_exists(student, facilitator, course):
             print("You have already registered for this course!")
             return False
