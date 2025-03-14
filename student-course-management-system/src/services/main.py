@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import bcrypt
-=======
+
 import re
 import time
 
->>>>>>> d790f5df66a5d6a3eb8f5953b90316fb00919b25
 from models.users import Facilitator, Student
 from services.authenticationservice import AuthenticationService
 from models.course import Course
@@ -43,15 +40,10 @@ def main():
 
             if choice == '1':
                 user_type = input("Are you a (1) Student or (2) Facilitator? ")
-<<<<<<< HEAD
-                first = input("First name: ")
-                last = input("Last name: ")
-                email = input("Email: ").lower()
-=======
+
                 first = valid_name("First name: ")
                 last = valid_name("Last name: ")
                 email = valid_email("Email: ").lower()
->>>>>>> d790f5df66a5d6a3eb8f5953b90316fb00919b25
                 password = input("Password: ")
 
                 try:
