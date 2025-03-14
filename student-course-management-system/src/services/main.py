@@ -1,4 +1,4 @@
-
+import bcrypt
 from models.users import Facilitator, Student
 from services.authenticationservice  import AuthenticationService
 from models.course import Course
@@ -42,7 +42,7 @@ def main():
                 first = input("First name: ")
                 last = input("Last name: ")
                 email = input("Email: ").lower()
-                password = input("Pas1sword: ")
+                password = input("Password: ")
 
                 try:
                     current_user = auth.register(
