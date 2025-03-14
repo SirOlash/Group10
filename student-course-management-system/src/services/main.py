@@ -1,4 +1,5 @@
 import re
+import time
 
 from models.users import Facilitator, Student
 from services.authenticationservice import AuthenticationService
@@ -38,9 +39,9 @@ def main():
 
             if choice == '1':
                 user_type = input("Are you a (1) Student or (2) Facilitator? ")
-                first = input("First name: ")
-                last = input("Last name: ")
-                email = input("Email: ").lower()
+                first = valid_name("First name: ")
+                last = valid_name("Last name: ")
+                email = valid_email("Email: ").lower()
                 password = input("Password: ")
 
                 try:
@@ -48,6 +49,7 @@ def main():
                         'student' if user_type == '1' else 'facilitator',
                         first, last, email, password
                     )
+                    loading_screen("Registering")
                     print("Registration successful!")
                     # Don't set current_user here, so we return to main menu
                 except Exception as e:
@@ -135,13 +137,30 @@ def main():
                     print("Invalid choice, please try again.")
 
 
+def valid_email(prompt):
+    while True:
+        user_input = input(prompt).strip()
+        if re.fullmatch(r'^[a-zA-Z0-9._%+-]+@+[a-zA-Z]+\.com$', user_input):
+            return user_input
+        else:
+            print("\033[91mInvalid email. Please try again.\033[0m")
+
 def valid_name(prompt):
     while True:
         user_input = input(prompt).strip()
-        if re.fullmatch(r'^[A-Z][a-z]+', user_input):
+        if re.fullmatch(r'^[A-Za-z]+', user_input):
             return user_input
         else:
-            print("Enter a valid input")
+            print("\033[91mInvalid input. Please try again.\033[0m")
+
+def loading_screen(message):
+    print(message, end='')
+    for index in range(1, 6):
+        print(">", end='')
+        time.sleep(1)
+    print()
+
+r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
 
 if __name__ == "__main__":
