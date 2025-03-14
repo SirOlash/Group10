@@ -1,7 +1,5 @@
 import os
 
-from services.course_manager import CourseManager
-
 REGISTRATIONS_FILE = "registered_courses.txt"
 
 class CourseRegistration:
