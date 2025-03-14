@@ -6,3 +6,5 @@ Student,Wer,Rew,wer@a.com,$2b$12$0D6RAID7L7csuzVCnFX.h.xqTVJuflMsW0zlapknV5lRpQ/
 Student,Fan,Naf,gh@a.com,$2b$12$xcT/Aot9U.qKikbFdnzBZuxPQP5aGBQWlCfOjGqqtG4uiYXnC/qie
 Student,wer,rew,qew@a.com,123
 Student,qre,rq,wer@b.com,123
+Student,ola,emmy,ola@gmail.com,ini
+Student,ola,qwe,we@gmail.com,1224

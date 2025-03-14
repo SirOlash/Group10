@@ -12,7 +12,6 @@ class CourseRegistration:
             open(REGISTRATIONS_FILE, "w").close()
 
 
-
     def  register_course(self, student, facilitator, course, grade="unassigned"):
         if self.registration_exists(student, facilitator, course):
             print("You have already registered for this course!")
