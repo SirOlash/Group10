@@ -1,3 +1,4 @@
+import time
 
 from models.users import Facilitator, Student
 from services.authenticationservice  import AuthenticationService
@@ -163,8 +164,12 @@ def main():
 
                         print(f"Error: {str(e)}")
 
-
-
+    def loading_screen(message):
+        print(message, end='')
+        for index in range(1, 6):
+            print(">", end='')
+            time.sleep(1)
+        print()
 
 if __name__ == "__main__":
     main()
