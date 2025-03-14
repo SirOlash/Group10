@@ -1,9 +1,9 @@
 import os
 import unittest
 
-from src.models.course import Course
-from src.models.users import Student, Facilitator
-from src.services.course_registration import CourseRegistration, REGISTRATIONS_FILE
+from models.course import Course
+from models.users import Student, Facilitator
+from services.course_registration import CourseRegistration, REGISTRATIONS_FILE
 
 
 class MyTestCase(unittest.TestCase):
@@ -24,7 +24,6 @@ class MyTestCase(unittest.TestCase):
         result = self.register.register_course(self.student,self.facilitator,self.course)
         self.assertTrue(result)
 
-    def test_that_s
 
     def test_that_each_student_can_view_their_registered_courses(self):
         self.register.register_course(self.student, self.facilitator, self.course)
