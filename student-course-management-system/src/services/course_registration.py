@@ -1,7 +1,5 @@
 import os
 
-from course_manager import CourseManager
-
 REGISTRATIONS_FILE = "registered_courses.txt"
 
 class CourseRegistration:
@@ -12,7 +10,6 @@ class CourseRegistration:
     def _initialize_file():
         if not os.path.exists(REGISTRATIONS_FILE):
             open(REGISTRATIONS_FILE, "w").close()
-
 
 
     def  register_course(self, student, facilitator, course, grade="unassigned"):

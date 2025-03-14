@@ -1,4 +1,10 @@
 Student,rew,wer,wer@gil.com,$2b$12$rVP/7SXJs47mRNzU/6gM5usUpqKb8GVFI0xggoZIVrGvRpevVWhsq
-Student,wer,rew,qew@a.com,$2b$12$jrhN3M1Rn1kCpB6/u/qeJOWR1avqquhVHNX7mjJCtedGiBZHEKPV.
-Student,Wer,Rew,wr@g.com,$2b$12$u.M4cES/1dmj0QrKGaCxK.ZhB6j912eKYA2jh1ACi2XieTYWyPvMO
-Student,Wer,Rew,wer@r.com,$2b$12$XC0.o44yj39HRCAPS8s8LOWNv8RftWAshDLZ94VWn8Li6pXVBun2m
+Student,dan,er,wee@a.com,$2b$12$nhXhQLmOJQe2PMFv9MGBHeplJ64VB73CpyQ/6mGbp6tZc19LqPTo2
+Student,han,nah,han@a.com,$2b$12$ZI8rOq5UyyDo7251KZXrc.w1S5E57YBfRuBe5iW7PHBb.2XW3HkzS
+Student,Han,Nah,e@g.com,$2b$12$s.nYY.vKXaDOJQVUxKksWuo6a19FUSU0boFDtvyPoscHGIzvCqPLy
+Student,Wer,Rew,wer@a.com,$2b$12$0D6RAID7L7csuzVCnFX.h.xqTVJuflMsW0zlapknV5lRpQ/uCo6fq
+Student,Fan,Naf,gh@a.com,$2b$12$xcT/Aot9U.qKikbFdnzBZuxPQP5aGBQWlCfOjGqqtG4uiYXnC/qie
+Student,wer,rew,qew@a.com,123
+Student,qre,rq,wer@b.com,123
+Student,ola,emmy,ola@gmail.com,ini
+Student,ola,qwe,we@gmail.com,1224

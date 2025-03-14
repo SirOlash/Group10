@@ -61,7 +61,7 @@
       <updated>1741264855037</updated>
       <workItem from="1741353482679" duration="36000" />
       <workItem from="1741783348949" duration="1842000" />
-      <workItem from="1741886043169" duration="8967000" />
+      <workItem from="1741886043169" duration="10604000" />
     </task>
     <servers />
   </component>
@@ -69,6 +69,6 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/courseregistration_py$main.coverage" NAME="main Coverage Results" MODIFIED="1741940912667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/student-course-management-system/src/services" />
+    <SUITE FILE_PATH="coverage/courseregistration_py$main.coverage" NAME="main Coverage Results" MODIFIED="1741954181270" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/student-course-management-system/src/services" />
   </component>
 </project>
